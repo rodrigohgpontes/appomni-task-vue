@@ -3,8 +3,9 @@
 		class="contacts__item"
 		v-bind:class="{ 'contacts__item--open': this.isOpen }"
 		@click="toggleItem"
+		data-test="contact-item"
 	>
-		<p class="contacts__field contacts__field--name">
+		<p class="contacts__field contacts__field--name" data-test="contact-name">
 			{{ contact.name }}
 		</p>
 
