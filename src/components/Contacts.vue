@@ -2,16 +2,15 @@
 	<div class="contacts">
 		<h1 class="contacts__title">Your contacts</h1>
 
-		<NewContact
-			v-on:add-contact="addContact"
-			v-on:get-contacts-number="getNumberOfContacts"
-		/>
+		<NewContact v-on:add-contact="addContact" />
 
 		<ContactList v-bind:contacts="contacts" v-on:del-contact="deleteContact" />
 	</div>
 </template>
 
 <script>
+import { v4 as uuidv4 } from "uuid";
+
 import NewContact from "./NewContact";
 import ContactList from "./ContactList";
 
@@ -49,16 +48,13 @@ export default {
 		};
 	},
 	methods: {
-		getNumberOfContacts() {
-			return this.contacts.length;
-		},
 		deleteContact(id) {
-			console.log("deleteContact id: ", id);
-			return;
+			this.contacts = this.contacts.filter(contact => contact.id !== id);
 		},
 		addContact(newContact) {
-			const { name, email, phoneNumber, address } = newContact;
-			console.log("addContact newContact: ", name, email, phoneNumber, address);
+			newContact.id = uuidv4();
+
+			this.contacts = [...this.contacts, newContact];
 		}
 	}
 };

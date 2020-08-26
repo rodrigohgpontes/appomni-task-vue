@@ -70,7 +70,6 @@ export default {
 			this.address = "";
 		},
 		toggleNewForm() {
-			console.log("toggling form");
 			this.isOpen = !this.isOpen;
 		}
 	}
@@ -95,14 +94,14 @@ export default {
 
 		background-color: #1f4068;
 
-		max-height: 0;
+		min-height: 0;
 		opacity: 0;
 		visibility: hidden;
 
-		transition: max-height 0.2s ease-in, opacity 0.2s ease-in 0.2s;
+		transition: min-height 0.2s ease-in-out, opacity 0.2s ease-in 0.2s;
 
 		&--open {
-			max-height: 14rem;
+			min-height: 14rem;
 			opacity: 1;
 			visibility: visible;
 			margin: 0.5rem auto 2rem;
