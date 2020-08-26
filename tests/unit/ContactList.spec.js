@@ -1,8 +1,8 @@
-import { shallowMount } from "@vue/test-utils";
+import { shallowMount, mount } from "@vue/test-utils";
 import ContactList from "@/components/ContactList";
 
 describe("ContactList", () => {
-	const wrapper = shallowMount(ContactList, {
+	const wrapper = mount(ContactList, {
 		propsData: {
 			contacts: [
 				{
@@ -31,6 +31,8 @@ describe("ContactList", () => {
 	});
 
 	it("renders a list of contact names", () => {
-		expect(wrapper.findAll(".contacts__field--name").length).toEqual(3);
+		expect(wrapper.findAll(".contacts__field--name").length).toEqual(
+			wrapper.props().contacts.length
+		);
 	});
 });
